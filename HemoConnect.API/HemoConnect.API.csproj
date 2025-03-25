@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HemoConnect.Application\HemoConnect.Application.csproj" />
+    <ProjectReference Include="..\HemoConnect.Core\HemoConnect.Core.csproj" />
+    <ProjectReference Include="..\HemoConnect.Infrastructure\HemoConnect.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
