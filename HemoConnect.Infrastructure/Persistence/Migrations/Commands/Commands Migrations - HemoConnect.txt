@@ -1,0 +1,13 @@
+//Cria a pasta migration dentro da pasta Persistence em Infrastructure.
+//Faça um cd até o projeto .API para aplicar os comandos.
+
+dotnet ef migrations add InitialMigration --startup-project ../HemoConnect.API --project ../HemoConnect.Infrastructure -o Persistence/Migrations --context HemoConnectDbContext
+
+
+//Executa a criação do banco que vai refletir no SQL Server Management Studio
+
+dotnet ef database update -s ../HemoConnect.API/HemoConnect.API.csproj
+
+
+
+
