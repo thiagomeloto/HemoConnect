@@ -8,6 +8,8 @@ namespace HemoConnect.Core.Entities
 {
     public class Donor
     {
+        public Donor() {
+        }
         public Donor(int id, string fullName, string email, DateTime birthDate, string gener, double weight, string bloodType, string rHFactor, List<Donation> donations, Address address)
         {
             Id = id;
