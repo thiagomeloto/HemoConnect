@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HemoConnect.Core.Entities;
+using MediatR;
 
 namespace HemoConnect.Application.Queries.GetAllBloodStock
 {
-    public class GetAllBloodStockQuery
+    public class GetAllBloodStockQuery : IRequest<List<BloodStock>>
     {
     }
 }
