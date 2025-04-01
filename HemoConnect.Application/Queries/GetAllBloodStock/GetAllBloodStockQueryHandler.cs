@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HemoConnect.Application.Queries.GetBloodStockByType
+namespace HemoConnect.Application.Queries.GetAllBloodStock
 {
-    public class GetBloodStockByTypeQuery
+    public class GetAllBloodStockQueryHandler
     {
     }
 }
