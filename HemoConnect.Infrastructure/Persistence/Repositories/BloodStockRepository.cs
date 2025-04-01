@@ -1,18 +1,19 @@
 ﻿using HemoConnect.Core.Entities;
 using HemoConnect.Core.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace HemoConnect.Infrastructure.Persistence.Repositories
 {
     public class BloodStockRepository : IBloodStockRepository
     {
-        public Task<BloodStock> GetAllBloodStockAsync()
+        private readonly HemoConnectDbContext _dbContext;
+        public BloodStockRepository(HemoConnectDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+        }
+        public async Task<List<BloodStock>> GetAllBloodStockAsync()
+        {
+            return await _dbContext.BloodStocks.ToListAsync();
         }
     }
 }
