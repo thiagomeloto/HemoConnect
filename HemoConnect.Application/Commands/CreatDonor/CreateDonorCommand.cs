@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HemoConnect.Application.Commands
+namespace HemoConnect.Application.Commands.CreatDonor
 {
     public class CreateDonorCommand : IRequest<int>
     {

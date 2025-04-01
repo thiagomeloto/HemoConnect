@@ -1,5 +1,6 @@
-﻿using HemoConnect.Application.Commands;
+﻿using HemoConnect.Application.Commands.CreatDonor;
 using HemoConnect.Application.Queries;
+using HemoConnect.Application.Queries.GetDonorById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

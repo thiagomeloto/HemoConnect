@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HemoConnect.Application.Commands
+namespace HemoConnect.Application.Queries.GetDonorById
 {
-    public class CreateDonorCommandHandler
+    public class GetDonorByIdQueryHandler
     {
 
     }
