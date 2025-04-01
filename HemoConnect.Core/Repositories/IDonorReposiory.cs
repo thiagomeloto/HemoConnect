@@ -10,6 +10,6 @@ namespace HemoConnect.Core.Repositories
     public interface IDonorReposiory
     {
         Task<int> AddAsync(Donor donor);
-        Task GetByIdAsync(int id);
+        Task<Donor> GetByIdAsync(int id);
     }
 }

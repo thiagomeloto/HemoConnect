@@ -1,5 +1,6 @@
 ﻿using HemoConnect.Core.Entities;
 using HemoConnect.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,24 @@ namespace HemoConnect.Infrastructure.Persistence.Repositories
 {
     public class DonorRepository : IDonorReposiory
     {
-        public Task<int> AddAsync(Donor donor)
+        private readonly HemoConnectDbContext _dbContext;
+        public DonorRepository(HemoConnectDbContext dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+        }
+        public async Task<int> AddAsync(Donor donor)
+        {
+            await _dbContext.Donors.AddAsync(donor);
+            await _dbContext.SaveChangesAsync();
+
+            return donor.Id;
         }
 
-        public Task GetByIdAsync(int id)
+        public async Task<Donor> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var donor = await _dbContext.Donors.SingleOrDefaultAsync(d => d.Id == id);
+
+            return donor;
         }
     }
 }
