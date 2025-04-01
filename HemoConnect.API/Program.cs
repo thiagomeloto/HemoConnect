@@ -1,5 +1,11 @@
+using HemoConnect.Application.Commands.CreatDonor;
+using HemoConnect.Application.Commands.CreateDonation;
+using HemoConnect.Core.Repositories;
 using HemoConnect.Infrastructure.Persistence;
+using HemoConnect.Infrastructure.Persistence.Repositories;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +17,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var connectionString = builder.Configuration.GetConnectionString("HemoConnectCS");
+
+builder.Services.AddScoped<IBloodStockRepository, BloodStockRepository>();
+builder.Services.AddScoped<IDonationRepository, DonationRepository>();
+builder.Services.AddScoped<IDonorReposiory, DonorRepository>();
+
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssemblies(
+        Assembly.GetExecutingAssembly(),
+        typeof(CreateDonorCommand).Assembly
+    ));
 
 //Registra o DbContext
 builder.Services.AddDbContext<HemoConnectDbContext>(options =>

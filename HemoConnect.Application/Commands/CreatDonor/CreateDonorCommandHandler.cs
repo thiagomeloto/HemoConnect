@@ -30,13 +30,13 @@ namespace HemoConnect.Application.Commands.CreatDonor
                 request.RHFactor
             );
 
-            var address = new Address(
-                request.Address.PublicPlace, 
-                request.Address.City, 
-                request.Address.State, 
-                request.Address.PostalCode, 
-                donor
-            );
+            //var address = new Address(
+            //    request.Address.PublicPlace, 
+            //    request.Address.City, 
+            //    request.Address.State, 
+            //    request.Address.PostalCode, 
+            //    donor
+            //);
 
             return await _donorReposiory.AddAsync(donor);
         }
