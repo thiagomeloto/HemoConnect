@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace HemoConnect.Core.Entities
 {
-    public class Donation
+    public class Donation : BaseEntity
     {
         public Donation() { }
-        public Donation(int id, int donorId, DateTime donationDate, int amountML, Donor donor)
-        {
-            Id = id;
+        public Donation(int donorId, DateTime donationDate, int amountML)
+        {            
             DonorId = donorId;
             DonationDate = donationDate;
-            AmountML = amountML;
-            Donor = donor;
+            AmountML = amountML;            
         }
 
         public int Id { get; private set; }

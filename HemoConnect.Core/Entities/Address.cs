@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HemoConnect.Core.Entities
 {
-    public class Address
+    public class Address : BaseEntity
     {
         public Address() { }
         public Address(string publicPlace, string city, string state, string postalCode, Donor donor)

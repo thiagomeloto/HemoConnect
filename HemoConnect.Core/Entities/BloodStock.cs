@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HemoConnect.Core.Entities
 {
-    public class BloodStock
+    public class BloodStock : BaseEntity
     {
         public BloodStock(int id, string bloodType, string rHFactor, int amountML)
         {
