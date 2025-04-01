@@ -10,18 +10,15 @@ namespace HemoConnect.Core.Entities
     {
         public Donor() {
         }
-        public Donor(int id, string fullName, string email, DateTime birthDate, string gener, double weight, string bloodType, string rHFactor, List<Donation> donations, Address address)
-        {
-            Id = id;
+        public Donor(string fullName, string email, DateTime birthDate, string gener, double weight, string bloodType, string rHFactor)
+        {            
             FullName = fullName;
             Email = email;
             BirthDate = birthDate;
             Gener = gener;
             Weight = weight;
             BloodType = bloodType;
-            RHFactor = rHFactor;
-            Donations = donations;
-            Address = address;
+            RHFactor = rHFactor;            
         }
 
         public int Id { get; set; }

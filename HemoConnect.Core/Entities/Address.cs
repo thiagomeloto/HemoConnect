@@ -9,9 +9,8 @@ namespace HemoConnect.Core.Entities
     public class Address
     {
         public Address() { }
-        public Address(int id, string publicPlace, string city, string state, string postalCode, Donor donor)
-        {
-            Id = id;
+        public Address(string publicPlace, string city, string state, string postalCode, Donor donor)
+        {            
             PublicPlace = publicPlace;
             City = city;
             State = state;
