@@ -7,5 +7,6 @@ namespace HemoConnect.Core.Repositories
         Task<int> AddAsync(Donor donor);
         Task<Donor> GetByIdAsync(int id);
         Task<bool> ExistsAsync(int id);
+        Task<bool> EmailExistsAsync(string email);
     }
 }

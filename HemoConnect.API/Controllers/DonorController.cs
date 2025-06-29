@@ -46,6 +46,9 @@ namespace HemoConnect.API.Controllers
         {
             var donorId = await _mediator.Send(command);
 
+            if (donorId == 0)
+                return BadRequest(new { error = "Já existe um doador com este e-mail."});
+
             if (donorId == -1)
                 return BadRequest(new { error = "O doador deve ter no mínimo 50 kilos" });
 

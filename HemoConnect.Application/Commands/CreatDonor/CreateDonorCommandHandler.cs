@@ -38,6 +38,11 @@ namespace HemoConnect.Application.Commands.CreatDonor
             //    donor
             //);
 
+            var emailExists = await _donorRepository.EmailExistsAsync(donor.Email);
+
+            if(emailExists)
+                return 0;
+
             if (donor.Weight < 50)
                 return -1;
 

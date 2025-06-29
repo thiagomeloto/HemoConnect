@@ -32,5 +32,12 @@ namespace HemoConnect.Infrastructure.Persistence.Repositories
 
             return donorExists;
         }
+
+        public async Task<bool> EmailExistsAsync(string email)
+        {
+            var emailExists = await _dbContext.Donors.AnyAsync(d => d.Email == email);
+
+            return emailExists;
+        }
     }
 }
