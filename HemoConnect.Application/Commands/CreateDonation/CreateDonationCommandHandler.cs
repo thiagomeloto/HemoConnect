@@ -32,6 +32,11 @@ namespace HemoConnect.Application.Commands.CreateDonation
             if (validateAge < 18)
                 return -1;
 
+            var validateAmountML = ValidateAmountML(request.AmountML);
+
+            if(!validateAmountML)
+                return -2;
+
             var donation = new Donation(request.DonorId, request.DonationDate, request.AmountML);
             await _donationRepository.AddAsync(donation);
 
@@ -50,6 +55,14 @@ namespace HemoConnect.Application.Commands.CreateDonation
                 age--;
 
             return age;
+        }
+
+        public bool ValidateAmountML(int amountML)
+        {
+            if (amountML >= 420 && amountML <= 470)
+                return true;
+
+            return false;
         }
     }
 }

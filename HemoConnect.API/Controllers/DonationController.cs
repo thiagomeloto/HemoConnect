@@ -42,6 +42,9 @@ namespace HemoConnect.API.Controllers
             if (donationId == -1)
                 return BadRequest(new { error = "O doador deve ter no mínimo 18 anos para realizar uma doação." });
 
+            if (donationId == -2)
+                return BadRequest(new { error = "A doação deve ter no mínimo 420 ML e no máximo 470 ML." });
+
             return CreatedAtAction(nameof(GetDonationById), new { id = donationId }, command);
         }
 
