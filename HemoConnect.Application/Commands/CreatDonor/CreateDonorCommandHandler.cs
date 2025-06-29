@@ -21,12 +21,12 @@ namespace HemoConnect.Application.Commands.CreatDonor
         public async Task<int> Handle(CreateDonorCommand request, CancellationToken cancellationToken)
         {
             var donor = new Donor(
-                request.FullName, 
-                request.Email, 
-                request.BirthDate, 
-                request.Gener, 
-                request.Weight, 
-                request.BloodType, 
+                request.FullName,
+                request.Email,
+                request.BirthDate,
+                request.Gener,
+                request.Weight,
+                request.BloodType,
                 request.RHFactor
             );
 
@@ -37,6 +37,9 @@ namespace HemoConnect.Application.Commands.CreatDonor
             //    request.Address.PostalCode, 
             //    donor
             //);
+
+            if (donor.Weight < 50)
+                return -1;
 
             return await _donorRepository.AddAsync(donor);
         }
