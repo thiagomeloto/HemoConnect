@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HemoConnect.Infrastructure.Persistence.Repositories
 {
-    public class DonorRepository : IDonorReposiory
+    public class DonorRepository : IDonorRepository
     {
         private readonly HemoConnectDbContext _dbContext;
         public DonorRepository(HemoConnectDbContext dbContext)
@@ -24,6 +24,13 @@ namespace HemoConnect.Infrastructure.Persistence.Repositories
             var donor = await _dbContext.Donors.SingleOrDefaultAsync(d => d.Id == id);
 
             return donor;
+        }
+
+        public async Task<bool> ExistsAsync(int id)
+        {
+            var donorExists = await _dbContext.Donors.AnyAsync(d => d.Id == id);
+
+            return donorExists;
         }
     }
 }

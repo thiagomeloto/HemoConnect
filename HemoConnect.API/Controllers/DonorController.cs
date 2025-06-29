@@ -1,5 +1,6 @@
 ﻿using HemoConnect.Application.Commands.CreatDonor;
 using HemoConnect.Application.Queries;
+using HemoConnect.Application.Queries.GetDonationByDonorId;
 using HemoConnect.Application.Queries.GetDonorById;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -21,9 +22,23 @@ namespace HemoConnect.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetDonorById(int id)
         {
-            var donor = await _mediator.Send(new GetDonorByIdQuery { Id = id});
+            var donor = await _mediator.Send(new GetDonorByIdQuery { Id = id });
 
-            return Ok(donor);
+            if (donor != null)
+                return Ok(donor);
+
+            return NotFound();
+        }
+
+        [HttpGet("{id}/donations")]
+        public async Task<IActionResult> GetDonationByDonorId(int id)
+        {
+            var donations = await _mediator.Send(new GetDonationByDonorIdQuery { Id = id });
+
+            if (donations != null)
+                return Ok(donations);
+
+            return NotFound();
         }
 
         [HttpPost]

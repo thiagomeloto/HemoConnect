@@ -7,16 +7,16 @@ namespace HemoConnect.Application.Queries.GetDonorById
 {
     public class GetDonorByIdQueryHandler : IRequestHandler<GetDonorByIdQuery, Donor>
     {
-        private readonly IDonorReposiory _donorReposiory;
+        private readonly IDonorRepository _donorRepository;
 
-        public GetDonorByIdQueryHandler(IDonorReposiory donorReposiory)
+        public GetDonorByIdQueryHandler(IDonorRepository donorRepository)
         {
-            _donorReposiory = donorReposiory;
+            _donorRepository = donorRepository;
         }
 
         public async Task<Donor> Handle(GetDonorByIdQuery request, CancellationToken cancellationToken)
         {
-            var donor = await _donorReposiory.GetByIdAsync(request.Id);
+            var donor = await _donorRepository.GetByIdAsync(request.Id);
 
             return donor;
         }

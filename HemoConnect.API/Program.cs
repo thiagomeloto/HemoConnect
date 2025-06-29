@@ -20,7 +20,7 @@ var connectionString = builder.Configuration.GetConnectionString("HemoConnectCS"
 
 builder.Services.AddScoped<IBloodStockRepository, BloodStockRepository>();
 builder.Services.AddScoped<IDonationRepository, DonationRepository>();
-builder.Services.AddScoped<IDonorReposiory, DonorRepository>();
+builder.Services.AddScoped<IDonorRepository, DonorRepository>();
 
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(

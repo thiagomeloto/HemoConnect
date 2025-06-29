@@ -8,9 +8,8 @@ namespace HemoConnect.Core.Entities
 {
     public class BloodStock : BaseEntity
     {
-        public BloodStock(int id, string bloodType, string rHFactor, int amountML)
+        public BloodStock(string bloodType, string rHFactor, int amountML)
         {
-            Id = id;
             BloodType = bloodType;
             RHFactor = rHFactor;
             AmountML = amountML;

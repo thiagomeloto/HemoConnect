@@ -11,11 +11,11 @@ namespace HemoConnect.Application.Commands.CreatDonor
 {
     public class CreateDonorCommandHandler : IRequestHandler<CreateDonorCommand, int>
     {
-        private readonly IDonorReposiory _donorReposiory;
+        private readonly IDonorRepository _donorRepository;
 
-        public CreateDonorCommandHandler(IDonorReposiory donorReposiory)
+        public CreateDonorCommandHandler(IDonorRepository donorRepository)
         {
-            _donorReposiory = donorReposiory;
+            _donorRepository = donorRepository;
         }
 
         public async Task<int> Handle(CreateDonorCommand request, CancellationToken cancellationToken)
@@ -38,7 +38,7 @@ namespace HemoConnect.Application.Commands.CreatDonor
             //    donor
             //);
 
-            return await _donorReposiory.AddAsync(donor);
+            return await _donorRepository.AddAsync(donor);
         }
     }
 }

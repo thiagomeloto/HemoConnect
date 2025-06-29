@@ -11,9 +11,18 @@ namespace HemoConnect.Infrastructure.Persistence.Repositories
         {
             _dbContext = dbContext;
         }
+
+        public async Task<int> AddBloodStockAsync(BloodStock bloodStock)
+        {
+            await _dbContext.BloodStocks.AddAsync(bloodStock);
+            await _dbContext.SaveChangesAsync();
+
+            return bloodStock.Id;
+        }
+
         public async Task<List<BloodStock>> GetAllBloodStockAsync()
         {
             return await _dbContext.BloodStocks.ToListAsync();
-        }
+        }        
     }
 }

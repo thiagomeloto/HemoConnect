@@ -9,18 +9,31 @@ using System.Threading.Tasks;
 
 namespace HemoConnect.Application.Commands.CreateDonation
 {
-    public class CreateDonationCommandHandler : IRequestHandler<CreateDonationCommand, int>
+    public class CreateDonationCommandHandler : IRequestHandler<CreateDonationCommand, int?>
     {
         private readonly IDonationRepository _donationRepository;
-        public CreateDonationCommandHandler(IDonationRepository donationRepository)
+        private readonly IDonorRepository _donorRepository;
+        private readonly IBloodStockRepository _bloodStockRepository;
+        public CreateDonationCommandHandler(IDonationRepository donationRepository, IDonorRepository donorRepository, IBloodStockRepository bloodStockRepository)
         {
             _donationRepository = donationRepository;
+            _donorRepository = donorRepository;
+            _bloodStockRepository = bloodStockRepository;
         }
-        public async Task<int> Handle(CreateDonationCommand request, CancellationToken cancellationToken)
+        public async Task<int?> Handle(CreateDonationCommand request, CancellationToken cancellationToken)
         {
-            var donation = new Donation(request.DonorId, request.DonationDate, request.AmountML);
+            var donor = await _donorRepository.GetByIdAsync(request.DonorId);
 
-            return await _donationRepository.AddAsync(donation);
+            if (donor == null)
+                return null;
+
+            var donation = new Donation(request.DonorId, request.DonationDate, request.AmountML);
+            await _donationRepository.AddAsync(donation);
+
+            var bloodStock = new BloodStock(donor.BloodType, donor.RHFactor, request.AmountML);
+            await _bloodStockRepository.AddBloodStockAsync(bloodStock);
+
+            return donation.Id;
         }
     }
 }

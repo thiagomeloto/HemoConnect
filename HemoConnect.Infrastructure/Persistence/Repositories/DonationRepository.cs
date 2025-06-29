@@ -23,5 +23,21 @@ namespace HemoConnect.Infrastructure.Persistence.Repositories
         {
             return await _dbContext.Donation.ToListAsync();
         }
+
+        public async Task<List<Donation>> GetDonationByDonorIdAsync(int id)
+        {
+            var donations = await _dbContext.Donation.
+                Where(d => d.DonorId == id).
+                ToListAsync();
+
+            return donations;
+        }
+
+        public async Task<Donation> GetDonationByIdAsync(int id)
+        {
+            var donation = await _dbContext.Donation.SingleOrDefaultAsync(d => d.Id == id);
+
+            return donation;
+        }
     }
 }

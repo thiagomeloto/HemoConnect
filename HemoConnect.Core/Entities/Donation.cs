@@ -13,7 +13,7 @@ namespace HemoConnect.Core.Entities
         {            
             DonorId = donorId;
             DonationDate = donationDate;
-            AmountML = amountML;            
+            AmountML = amountML;
         }
 
         public int Id { get; private set; }
