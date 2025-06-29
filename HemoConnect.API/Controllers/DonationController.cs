@@ -36,10 +36,13 @@ namespace HemoConnect.API.Controllers
         {
             var donationId = await _mediator.Send(command);
 
-            if (donationId != null)
-                return CreatedAtAction(nameof(GetDonationById), new { id = donationId }, command);
+            if (donationId == null)
+                return NotFound(new { error = "Doador não encontrado." });
 
-            return NotFound(new { error = "Doador não encontrado." });
+            if (donationId == -1)
+                return BadRequest(new { error = "O doador deve ter no mínimo 18 anos para realizar uma doação." });
+
+            return CreatedAtAction(nameof(GetDonationById), new { id = donationId }, command);
         }
 
         [HttpGet("bloodstock")]

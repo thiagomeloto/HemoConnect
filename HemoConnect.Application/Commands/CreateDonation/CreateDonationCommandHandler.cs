@@ -27,6 +27,11 @@ namespace HemoConnect.Application.Commands.CreateDonation
             if (donor == null)
                 return null;
 
+            var validateAge = CalculateAge(donor.BirthDate);
+
+            if (validateAge < 18)
+                return -1;
+
             var donation = new Donation(request.DonorId, request.DonationDate, request.AmountML);
             await _donationRepository.AddAsync(donation);
 
@@ -34,6 +39,17 @@ namespace HemoConnect.Application.Commands.CreateDonation
             await _bloodStockRepository.AddBloodStockAsync(bloodStock);
 
             return donation.Id;
+        }
+
+        public int CalculateAge(DateTime birthDate)
+        {
+            var today = DateTime.Today;
+            var age = today.Year - birthDate.Year;
+
+            if (birthDate.Date > today.AddYears(-age)) 
+                age--;
+
+            return age;
         }
     }
 }
