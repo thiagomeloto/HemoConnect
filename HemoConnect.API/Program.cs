@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using HemoConnect.Application.Commands.CreatDonor;
 using HemoConnect.Application.Commands.CreateDonation;
 using HemoConnect.Core.Repositories;
@@ -27,6 +29,9 @@ builder.Services.AddMediatR(cfg =>
         Assembly.GetExecutingAssembly(),
         typeof(CreateDonorCommand).Assembly
     ));
+
+builder.Services.AddFluentValidationAutoValidation().
+    AddValidatorsFromAssemblyContaining<CreateDonorCommand>();
 
 //Registra o DbContext
 builder.Services.AddDbContext<HemoConnectDbContext>(options =>

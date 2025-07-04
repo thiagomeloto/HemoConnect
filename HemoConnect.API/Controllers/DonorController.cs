@@ -44,6 +44,9 @@ namespace HemoConnect.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateDonorCommand command)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var donorId = await _mediator.Send(command);
 
             if (donorId == 0)
