@@ -34,11 +34,23 @@ namespace HemoConnect.Application.Commands.CreateDonation
 
             var validateAmountML = ValidateAmountML(request.AmountML);
 
-            if(!validateAmountML)
+            if (!validateAmountML)
                 return -2;
 
-            var donation = new Donation(request.DonorId, request.DonationDate, request.AmountML);
-            await _donationRepository.AddAsync(donation);
+            var donation = await _donationRepository.GetLastDonationByDonorIdAsync(donor.Id);
+
+            var validateLastDonation = ValidateLastDonation(donor.Gener, donation.DonationDate);
+
+            if (!validateLastDonation)
+            {
+                if (donor.Gener == "M")
+                    return -3;
+                if (donor.Gener == "F")
+                    return -4;
+            }
+
+            var donationObject = new Donation(request.DonorId, request.DonationDate, request.AmountML);
+            await _donationRepository.AddAsync(donationObject);
 
             var bloodStock = new BloodStock(donor.BloodType, donor.RHFactor, request.AmountML);
             await _bloodStockRepository.AddBloodStockAsync(bloodStock);
@@ -51,7 +63,7 @@ namespace HemoConnect.Application.Commands.CreateDonation
             var today = DateTime.Today;
             var age = today.Year - birthDate.Year;
 
-            if (birthDate.Date > today.AddYears(-age)) 
+            if (birthDate.Date > today.AddYears(-age))
                 age--;
 
             return age;
@@ -61,6 +73,24 @@ namespace HemoConnect.Application.Commands.CreateDonation
         {
             if (amountML >= 420 && amountML <= 470)
                 return true;
+
+            return false;
+        }
+
+        public bool ValidateLastDonation(string generDonor, DateTime lastDonation)
+        {
+            var today = DateTime.Today;
+
+            if (generDonor == "M")
+            {
+                if (today.AddDays(-60) >= lastDonation)
+                    return true;
+            }
+            else if (generDonor == "F")
+            {
+                if (today.AddDays(-90) >= lastDonation)
+                    return true;
+            }
 
             return false;
         }

@@ -45,6 +45,12 @@ namespace HemoConnect.API.Controllers
             if (donationId == -2)
                 return BadRequest(new { error = "A doação deve ter no mínimo 420 ML e no máximo 470 ML." });
 
+            if (donationId == -3)
+                return BadRequest(new { error = "Homens só podem doar de 60 em 60 dias" });
+
+            if (donationId == -4)
+                return BadRequest(new { error = "Mulheres só podem doar de 90 em 90 dias" });
+
             return CreatedAtAction(nameof(GetDonationById), new { id = donationId }, command);
         }
 

@@ -8,5 +8,7 @@ namespace HemoConnect.Core.Repositories
         Task <List<Donation>> GetAllDonationsAsync();
         Task<Donation> GetDonationByIdAsync(int id);
         Task<List<Donation>> GetDonationByDonorIdAsync(int id);
+
+        Task<Donation> GetLastDonationByDonorIdAsync(int id);
     }
 }

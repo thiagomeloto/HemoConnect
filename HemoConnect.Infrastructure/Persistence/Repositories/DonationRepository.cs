@@ -39,5 +39,15 @@ namespace HemoConnect.Infrastructure.Persistence.Repositories
 
             return donation;
         }
+
+        public async Task<Donation> GetLastDonationByDonorIdAsync(int id)
+        {
+            var donation = await _dbContext.Donation.
+                Where(d => d.DonorId == id).
+                OrderByDescending(x => x.DonationDate).
+                FirstOrDefaultAsync();
+
+            return donation;
+        }
     }
 }
