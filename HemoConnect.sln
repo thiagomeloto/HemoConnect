@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoConnect.API", "HemoConnect.API\HemoConnect.API.csproj", "{C4C7198F-4850-45CA-AFCA-2BF0EE3764EC}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoConnect.Core", "HemoConnect.Core\HemoConnect.Core.csproj", "{0B427F70-DE13-4E2B-9AFE-6146CE29832E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoConnect.Infrastructure", "HemoConnect.Infrastructure\HemoConnect.Infrastructure.csproj", "{6B0BB822-2818-49C1-8885-066FAFFDA542}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HemoConnect.UnitTests", "HemoConnect.UnitTests\HemoConnect.UnitTests.csproj", "{0269D2D5-3C0C-46DE-994C-D972BD0326DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{6B0BB822-2818-49C1-8885-066FAFFDA542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B0BB822-2818-49C1-8885-066FAFFDA542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B0BB822-2818-49C1-8885-066FAFFDA542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0269D2D5-3C0C-46DE-994C-D972BD0326DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0269D2D5-3C0C-46DE-994C-D972BD0326DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0269D2D5-3C0C-46DE-994C-D972BD0326DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0269D2D5-3C0C-46DE-994C-D972BD0326DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1AAFAB35-414F-4394-B650-B8C1C154AE7B}
 	EndGlobalSection
 EndGlobal
