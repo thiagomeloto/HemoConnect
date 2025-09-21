@@ -125,5 +125,35 @@ namespace HemoConnect.UnitTests.Core
             Assert.NotNull(result);
             Assert.True(result.DonationDate == donation2.DonationDate);
         }
+
+        [Fact]
+        public async Task GetLastDonationByDonorIdAsync_ShouldReturnNull_WhenNoDonationsExist()
+        {
+            var context = CreateDbContext(nameof(GetLastDonationByDonorIdAsync_ShouldReturnNull_WhenNoDonationsExist));
+            var repository = new DonationRepository(context);
+
+            var result = await repository.GetLastDonationByDonorIdAsync(1);
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public async Task GetDonationByDonorIdAsync_ShouldReturnAllDonations_ForSameDonor()
+        {
+            var context = CreateDbContext(nameof(GetDonationByDonorIdAsync_ShouldReturnAllDonations_ForSameDonor));
+            var repository = new DonationRepository(context);
+
+            var donation1 = new Donation(1, new DateTime(2020, 01, 01), 200);
+            var donation2 = new Donation(1, new DateTime(2021, 01, 01), 300);
+
+            await repository.AddAsync(donation1);
+            await repository.AddAsync(donation2);
+
+            var result = await repository.GetDonationByDonorIdAsync(1);
+
+            Assert.Equal(2, result.Count);
+            Assert.Contains(result, d => d.AmountML == 200);
+            Assert.Contains(result, d => d.AmountML == 300);
+        }
     }
 }
